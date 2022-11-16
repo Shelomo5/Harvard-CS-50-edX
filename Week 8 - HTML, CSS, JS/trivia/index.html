@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+
+            // Wait until Document Object Model representing our page is done loading then run our function
+            document.addEventListener("DOMContentLoaded", function() {
+                //Selects button, selects only element with class correct storing it inside variable
+                let correct = document.querySelector(".correct");
+                //add event listener for the click event, which means function runs when button is clicked
+                correct.addEventListener("click", function() {
+                    //helps modify style of button and change background to green
+                    correct.style.backgroundColor = "green";
+                    //find me the element whose id is feedback1, then update inner element to correct
+                    document.querySelector('#feedback1').innerHTML = "Correct!";
+                });
+
+
+                //return an array for all the elements which has a class of incorrect
+                let incorrect = document.querySelectorAll(".incorrect");
+                //loop over all incorrect responses
+                for (let i = 0; i < incorrect.length; i++) {
+                //add event listener and function runs
+                    incorrect[i].addEventListener('click', function() {
+                    //helps modify style of button and change background to green
+                        incorrect[i].style.backgroundColor = "red";
+                    //find me the element whose id is feedback1, then update inner element to correct
+                        document.querySelector('#feedback1').innerHTML = "Incorrect!";
+                    });
+                }
+
+                //When the button that has an id of check is clicked, add event listener when button is clicked run function
+                document.querySelector("#check").addEventListener("click", function() {
+                    //Give JS access to user input field where user was typing
+                    let input = document.querySelector("input");
+                    //input.value gives you the value of what user typed in and if it's the correct answer
+                    if (input.value.toLowerCase() =="The Warriors") {
+                        //change background to green
+                        input.style.backgroundColor = "green";
+                        //letting user know they answered the question correctly
+                        document.querySelector("#feedback2").innerHTML = "Correct!";
+                    } else {
+                        input.style.backgroundColor = "red";
+                        document.querySelector("#feedback2").innerHTML = "Incorrect";
+                    }
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+
+                <h3>Who is the greatest basketball player of all time? </h3>
+
+                <button class="incorrect">Kareem</button>
+                <button class="correct">Michael Jordan</button>
+                <button class="incorrect">Bill Russell</button>
+                <button class="incorrect">Wilt  Chamberlain</button>
+                <button class="incorrect">Magic</button>
+
+                <p id="feedback1"></p>
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3> Who will win the NBA finals?</h3>
+                <input type="text">
+                <button id="check">Check Answer</button>
+
+                <p id="feedback2"></p>
+
+            </div>
+        </div>
+    </body>
+</html>
